@@ -1,0 +1,11 @@
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\bin\Debug\netcoreapp3.1\FMProjectCode.exe
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\bin\Debug\netcoreapp3.1\FMProjectCode.deps.json
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\bin\Debug\netcoreapp3.1\FMProjectCode.runtimeconfig.json
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\bin\Debug\netcoreapp3.1\FMProjectCode.runtimeconfig.dev.json
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\bin\Debug\netcoreapp3.1\FMProjectCode.dll
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\bin\Debug\netcoreapp3.1\FMProjectCode.pdb
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\obj\Debug\netcoreapp3.1\FMProjectCode.csprojAssemblyReference.cache
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\obj\Debug\netcoreapp3.1\FMProjectCode.AssemblyInfoInputs.cache
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\obj\Debug\netcoreapp3.1\FMProjectCode.AssemblyInfo.cs
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\obj\Debug\netcoreapp3.1\FMProjectCode.dll
+C:\Users\gaga-\Desktop\M2\FM Project\FMProjectCode\obj\Debug\netcoreapp3.1\FMProjectCode.pdb
