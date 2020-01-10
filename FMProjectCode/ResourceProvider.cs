@@ -1,30 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading;
 
 namespace FMProjectCode
 {
-    class ResourceProvider
+    static class ResourceProvider
     {
-        public int standByDoctors { get; set; }
-        public int standByRooms { get; set; }
+        public static int standByDoctors = 0;
+        public static int standByRooms = 0;
+        public static Semaphore semaphore = new Semaphore(1, 1);
 
-        public void takeDoctor()
+        public static void takeDoctor()
         {
             standByDoctors--;
         }
 
-        public void giveDoctor()
+        public static void giveDoctor()
         {
             standByDoctors++;
         }
 
-        public void takeRoom()
+        public static void takeRoom()
         {
             standByRooms--;
         }
 
-        public void giveRoom()
+        public static void giveRoom()
         {
             standByRooms++;
         }

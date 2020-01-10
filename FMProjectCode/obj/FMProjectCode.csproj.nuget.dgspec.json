@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FMProjectCode\\FMProjectCode.csproj": {}
+    "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FormalModeling\\FMProjectCode\\FMProjectCode.csproj": {}
   },
   "projects": {
-    "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FMProjectCode\\FMProjectCode.csproj": {
+    "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FormalModeling\\FMProjectCode\\FMProjectCode.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FMProjectCode\\FMProjectCode.csproj",
+        "projectUniqueName": "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FormalModeling\\FMProjectCode\\FMProjectCode.csproj",
         "projectName": "FMProjectCode",
-        "projectPath": "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FMProjectCode\\FMProjectCode.csproj",
+        "projectPath": "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FormalModeling\\FMProjectCode\\FMProjectCode.csproj",
         "packagesPath": "C:\\Users\\gaga-\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FMProjectCode\\obj\\",
+        "outputPath": "C:\\Users\\gaga-\\Desktop\\M2\\FM Project\\FormalModeling\\FMProjectCode\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Microsoft\\Xamarin\\NuGet\\",

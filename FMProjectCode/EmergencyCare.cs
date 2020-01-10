@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace FMProjectCode
 {
@@ -38,14 +39,25 @@ namespace FMProjectCode
 
         public void serviceForAPatient()
         {
-            Thread.Sleep(3000);
+            Thread.Sleep(RandomNumber(2, 5));
             if(isNbrOfPatientLowerThan10())
             {
+                int timeToWait = RandomNumber(2, 5);
 
                 checkIn();
-                fillingPaperwork();
-                enterTheRoom();
-                examination();
+
+                Thread.Sleep(timeToWait);
+                fillingPaperwork(timeToWait);
+
+                timeToWait = RandomNumber(5, 10);
+                Thread.Sleep(timeToWait);
+                enterTheRoom(timeToWait);
+
+                timeToWait = RandomNumber(5, 10);
+                Thread.Sleep(timeToWait);
+                examination(timeToWait);
+
+                Thread.Sleep(RandomNumber(3, 5));
                 checkOut();
             }
             else
@@ -56,11 +68,13 @@ namespace FMProjectCode
 
         public void sendPatients()
         {
-            for(int i = 0; i < emergencyRoom; i++)
+            int localEmergencyRoom = emergencyRoom;
+            for (int i = 0; i < localEmergencyRoom; i++)
             {
                 Thread thread = new Thread(new ThreadStart(serviceForAPatient));
+                Thread.Sleep(2000);
                 thread.Start();
-            }
+            }          
         }
 
         public void printResources()
@@ -93,11 +107,11 @@ namespace FMProjectCode
         }
 
         public void rejectingPatient() 
-        { 
+        {
             emergencyRoom--;
             patientRefused++;
-            Console.WriteLine("Action: Rejecting Patient");
-            printResources();
+            Console.WriteLine(name + ": Action: Rejecting Patient");
+            //printResources();
         }
 
         public void checkIn()
@@ -105,36 +119,81 @@ namespace FMProjectCode
             patientInService++;
             patientAccepted++;
             emergencyRoom--;
-            Console.WriteLine("Action: Check-in");
-            printResources();
+            Console.WriteLine(name + ": Action: Check-in");
+            //printResources();
         }
 
-        public void fillingPaperwork()
+        public void fillingPaperwork(int timeToWait)
         {
+            while(nurses <= 0)
+            {
+                Console.WriteLine(name + ": Waiting for nurses");
+                Thread.Sleep(1000);
+                timeToWait += 1000;
+            }
+
             patientAccepted--;
             nurses--;
             waiting++;
-            Console.WriteLine("Action: Filling Paperwork");
-            printResources();
+            Console.WriteLine(name + ": Waited " + timeToWait / 1000 + "s for Filling Paperwork");
+            //printResources();
         }
 
-        public void enterTheRoom()
+        public void enterTheRoom(int timeToWait)
         {
+            while (examiningRooms <= 0)
+            {
+                Console.WriteLine(name + ": Waiting for rooms");
+                Thread.Sleep(1000);
+                timeToWait += 1000;
+                if(ResourceProvider.standByRooms > 0)
+                {
+                    ResourceProvider.semaphore.WaitOne();
+                    while (ResourceProvider.standByRooms > 0)
+                    {
+                        Console.WriteLine(name + ": Taking 1 Room");
+                        ResourceProvider.takeRoom();
+                        Console.WriteLine("Remaining StandBy Rooms: " + ResourceProvider.standByRooms);
+                        examiningRooms++;
+                    }
+                    ResourceProvider.semaphore.Release();
+                }
+            }
+
             waiting--;
             examiningRooms--;
             nurses++;
             patientInRoom++;
-            Console.WriteLine("Action: Enters the room");
-            printResources();
+            Console.WriteLine(name + ": Waited " + timeToWait / 1000 + "s for Enter the room");
+            //printResources();
         }
 
-        public void examination()
+        public void examination(int timeToWait)
         {
+            while(doctors <= 0)
+            {
+                Console.WriteLine(name + ": Waiting for doctors");
+                Thread.Sleep(1000);
+                timeToWait += 1000;
+                if (ResourceProvider.standByDoctors > 0)
+                {
+                    ResourceProvider.semaphore.WaitOne();
+                    while (ResourceProvider.standByDoctors > 0)
+                    {
+                        Console.WriteLine(name + ": Taking 1 Doctor");
+                        ResourceProvider.takeDoctor();
+                        Console.WriteLine("Remaining Standby Doctors: " + ResourceProvider.standByDoctors);
+                        doctors++;
+                    }
+                    ResourceProvider.semaphore.Release();
+                }
+            }
+
             patientInRoom--;
             doctors--;
             patientExamined++;
-            Console.WriteLine("Action: Examination");
-            printResources();
+            Console.WriteLine(name + ": Waited " + timeToWait / 1000 + "s for Examination");
+            //printResources();
         }
 
         public void checkOut()
@@ -144,14 +203,14 @@ namespace FMProjectCode
             doctors++;
             examiningRooms++;
             patientOutOfHospital++;
-            Console.WriteLine("Action: Check-out");
-            printResources();
+
+            Console.WriteLine(name + ": Action: Check-out");
         }
 
         public int RandomNumber(int min, int max)
         {
             Random random = new Random();
-            return random.Next(min, max);
+            return random.Next(min, max) * 1000;
         }
     }
 }
